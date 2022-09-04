@@ -1,3 +1,40 @@
-header {
-    height: 300px;
+
+.search {
+    display: flex;
+    max-width: 200px;
+
+}
+.headmain {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    padding: 15px;
+    margin: 5px;
+    background-image: linear-gradient(90deg, rgb(0, 140, 255), rgb(247, 175, 21));
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+}
+
+.card.col-4 {
+    margin: 10px;
+    width: 20em;
+}
+
+.btn.btn-primary{
+
+    margin-top: 10px;
+    width: 15em;
+}
+
+.forecast {
+    display: flex;
+    width: 100em;
+    margin: 10px;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 5px;
 }
