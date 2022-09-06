@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-height: 200px;
 }
 
 .card.col-4 {
@@ -31,8 +30,24 @@
 }
 
 .forecast {
+    flex: 0 0 500px;
     width: 100em;
     margin: 10px;
     border: 1px solid rgb(206, 206, 206);
     border-radius: 5px;
 }
+
+.city {
+    display: flex;
+}
+
+#citysearch {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+button {
+    margin: 5px;
+}
+

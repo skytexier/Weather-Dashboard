@@ -20,20 +20,23 @@
             <label for="cityselect" class="form-label">
                 <h2 class="card-title">Search for a City</h2>
             </label>
-            
-            <input class="input-group" type="text" placeholder="Type a city here" id="cityinput" autocomplete>
+            <input class="input-group" type="text" placeholder="Type a city here" id="cityinput" autocapitalize="words">            
             <button type="button" id="searchcity" class="btn btn-primary">Search</button>
+            <hr>
         </form>
         </div>
     </div>
     <div class="forecast">
         <div class="city">
             <h2 id="cityname"></h2>
+            <div id="icon"><img id="weathericon"></div>
+        </div>
+        <div class="dailyforecast" id="daily">
         </div>
     </div>
 </section>
-<div class="card col-4 fiveday">
-    <h2>5 day Forecast</h2>
+<div class="fiveday">
+    <h2>5 day Forecast:</h2>
     <div class="forecastdata" id="forecastdata">
     </div>
 </div>
