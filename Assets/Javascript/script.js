@@ -20,7 +20,6 @@ fetch(apiURL)
     //Converting unix time
    var currentDate = new Date(data.list[0].dt * 1000);
    var currentDateText = currentDate.toLocaleDateString("en-US");
-   var differentDate = data.list[0].dt_txt
 
 
 
@@ -39,13 +38,21 @@ fetch(apiURL)
     $(currentDay).append("<p> Humidity: " + data.list[0].main.humidity + "</p>");
     $(currentDay).append("<p> UV Index: " + data.list[0].main.temp + "</p>");
 
-    for (let i = 0; i < data.list.length; i+8) {
-        // $(fivedayEl).append("<h3>" + data.list[i].dt_txt + "</h3>");
-        // $(fivedayEl).append("<img src=http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png </img>");
-        // $(fivedayEl).append("<p> Temp: " + data.list[i].main.temp + "°F </p>");
-        // $(fivedayEl).append("<p> Wind: " + data.list[i].wind.speed + " MPH </p>");
-        // $(fivedayEl).append("<p> Humidity: " + data.list[i].main.humidity + "</p>");
-        // $(fivedayEl).append("<p> UV Index: " + data.list[i].main.temp + "</p>");
+
+
+    for (let i = 1; i < data.list.length; i+=8) {
+        var dayId= "#" + i;
+        var formatDate = new Date(data.list[i].dt * 1000);
+        var dateEl = formatDate.toLocaleDateString("en-Us");
+
+
+        $(fivedayEl).append("<div class='fivedaycard' id= "+ i + "></div>");
+        $(dayId).append("<h3>" + dateEl + "</h3>");
+        $(dayId).append("<img src=http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png </img>");
+        $(dayId).append("<p> Temp: " + data.list[i].main.temp + "°F </p>");
+        $(dayId).append("<p> Wind: " + data.list[i].wind.speed + " MPH </p>");
+        $(dayId).append("<p> Humidity: " + data.list[i].main.humidity + "</p>");
+        $(dayId).append("<p> UV Index: " + data.list[i].main.temp + "</p>");
     };
 
   
