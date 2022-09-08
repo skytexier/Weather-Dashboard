@@ -1,6 +1,6 @@
 main {
     display: flex;
-    gap: 50px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
@@ -35,15 +35,24 @@ main {
     width: 15em;
 }
 
-.forecast {
+.custom-fiveday {
+    margin: auto auto;
+    align-items: center;
+}
+
+.custom-forecast {
     display: block;
-    width: 75rem;
     margin: 10px;
     border: 1px solid rgb(206, 206, 206);
     border-radius: 5px;
     flex: 0 0 auto;
     max-height: 300px;
     height: 250px;
+}
+
+.forecast .uvi {
+    border-radius: 2px;
+    border-width: 10px;
 }
 
 #citysearch {
@@ -71,4 +80,22 @@ button {
     margin: 10px;
     width: 200px;
     border-radius: 10px;
+}
+
+/* UV Index */
+
+.uvi-low {
+    background-color: green;
+}
+.uvi-moderate {
+    background-color: yellow;
+}
+.uvi-high {
+    background-color: orange;
+}
+.uvi-very {
+    background-color: red;
+}
+.uvi-xtreme {
+    background-color: purple;
 }

@@ -55,8 +55,19 @@ fetch(apiURL)
     $(currentDay).empty()
     $(currentDay).append("<p> Temp: " + onecall.current.temp + "°F </p>");
     $(currentDay).append("<p> Wind: " + onecall.current.wind_speed + " MPH </p>");
-    $(currentDay).append("<p> Humidity: " + onecall.current.humidity + "</p>");
-    $(currentDay).append("<p> UV Index: " + onecall.current.uvi + "</p>");
+    $(currentDay).append("<p> Humidity: " + onecall.current.humidity + " % </p>");
+    $(currentDay).append("<p> UV Index: <span class=uvi>" + onecall.daily[0].uvi + "</span></p>");
+    
+    //If else for current day UVI
+    if (onecall.current.uvi < 3){
+        $(".uvi").addClass("uvi-low");
+    } else if (onecall.current.uvi  >= 3 && onecall.current.uvi  <= 5){
+        $(".uvi").addClass("uvi-moderate");
+    } else if (onecall.current.uvi  >= 6 && onecall.current.uvi  <= 7){
+        $(".uvi").addClass("uvi-high");
+    } else if (onecall.current.uvi  >= 8 && onecall.current.uvi  <= 10){
+        $(".uvi").addClass("uvi-very");
+    } else $(".uvi").addClass("uvi-xtreme");
 
     //For loop to iterate through 5 day forecast
     $(".fivedaycard").remove()
@@ -71,8 +82,18 @@ fetch(apiURL)
         $(dayId).append("<img src=http://openweathermap.org/img/w/" + onecall.daily[i].weather[0].icon + ".png </img>");
         $(dayId).append("<p> Temp: " + onecall.daily[i].temp.day + "°F </p>");
         $(dayId).append("<p> Wind: " + onecall.daily[i].wind_speed + " MPH </p>");
-        $(dayId).append("<p> Humidity: " + onecall.daily[i].humidity + "</p>");
-        $(dayId).append("<p> UV Index: " + onecall.daily[i].uvi + "</p>");
+        $(dayId).append("<p> Humidity: " + onecall.daily[i].humidity + " % </p>");
+        $(dayId).append("<p class=uvi> UV Index: " + onecall.daily[i].uvi + "</p>");
+
+        if (onecall.daily[i].uvi < 3){
+            $(".uvi").addClass("uvi-low");
+        } else if (onecall.daily[i].uvi >= 3 && onecall.daily[i].uvi <= 5){
+            $(".uvi").addClass("uvi-moderate");
+        } else if (onecall.daily[i].uvi >= 6 && onecall.daily[i].uvi <= 7){
+            $(".uvi").addClass("uvi-high");
+        } else if (onecall.daily[i].uvi >= 8 && onecall.daily[i].uvi <= 10){
+            $(".uvi").addClass("uvi-very");
+        } else $(".uvi").addClass("uvi-xtreme");
     };
 
   
