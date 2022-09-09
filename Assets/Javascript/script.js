@@ -110,9 +110,17 @@ var buttonClickHandler = function (event) {
     } else {
     callCity(cityInput);
     $(event.currentTarget.parentElement).append("<button id="+cityInput+" class='btn btn-secondary'>"+ cityInput + "</button>");
+    console.log(cityInput);
     
-    }
+    // Working on this local storage saving at the moment!
+    var newCityBtn = $('#' + cityInput);
+    console.log(newCityBtn);
+    localStorage.setItem('city', JSON.stringify(cityHistory));
+    var storedCity = JSON.parse(localStorage.getItem('city'));
+    console.log(storedCity);
 
+    }
+    document.querySelector("#Santa")
 };
 //Search button on click
 buttonEl.addEventListener("click", buttonClickHandler);

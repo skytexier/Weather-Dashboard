@@ -68,6 +68,7 @@ button {
 .fiveday {
     display: flex;
     margin: 25px;
+    justify-content: center;
 }
 
 .city {
