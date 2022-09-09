@@ -2,8 +2,7 @@ var fivedayEl = document.querySelector('#fiveday');
 var buttonEl = document.querySelector('#searchcity');
 var cityNameEl = document.querySelector('#cityname');
 var currentDay = document.querySelector('#daily');
-
-
+var cityHistory = []
 // Function to call city, get API based on city name through concatenation 
 var callCity = function (cityname) {
 var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&appid=825f8c44f819c519c3d1ebb993400003&units=imperial";
@@ -113,14 +112,18 @@ var buttonClickHandler = function (event) {
     console.log(cityInput);
     
     // Working on this local storage saving at the moment!
-    var newCityBtn = $('#' + cityInput);
-    console.log(newCityBtn);
-    localStorage.setItem('city', JSON.stringify(cityHistory));
-    var storedCity = JSON.parse(localStorage.getItem('city'));
-    console.log(storedCity);
-
+    cityHistory.push(cityInput);
+    localStorage.setItem('history', cityHistory);
+    console.log(cityHistory);
     }
-    document.querySelector("#Santa")
 };
+
+// Creating button for searched cities function
+var createCityButton = function () {
+    var callHistory = localStorage.getItem('history');
+    for (let i = 0; i < callHistory; i++) {
+    $('.card-body').append("<button id="+ callHistory[i]+" class='btn btn-secondary'>"+ callHistory[i] + "</button>");
+}}
+
 //Search button on click
 buttonEl.addEventListener("click", buttonClickHandler);
