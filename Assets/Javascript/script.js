@@ -3,9 +3,14 @@ var buttonEl = document.querySelector('#searchcity');
 var cityNameEl = document.querySelector('#cityname');
 var currentDay = document.querySelector('#daily');
 var cityHistory = []
-// Function to call city, get API based on city name through concatenation 
+var searchHistory = document.querySelector('#searchHistory');
+var researchBtnEl = document.querySelector('#research-btn');
+
+
+///get API based on city name through concatenation 
 var callCity = function (cityname) {
 var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityname + "&appid=825f8c44f819c519c3d1ebb993400003&units=imperial";
+
 
 //Creating variables to store different API calls
 var currentCity, onecall;
@@ -103,27 +108,45 @@ fetch(apiURL)
 
 // Search button on click event
 var buttonClickHandler = function (event) {
+    event.preventDefault();
     var cityInput = document.querySelector('#cityinput').value;
     if (cityInput === undefined) {
         return;
     } else {
     callCity(cityInput);
-    $(event.currentTarget.parentElement).append("<button id="+cityInput+" class='btn btn-secondary'>"+ cityInput + "</button>");
     console.log(cityInput);
-    
+
     // Working on this local storage saving at the moment!
+    if (cityHistory.indexOf(cityInput) === -1) {
     cityHistory.push(cityInput);
-    localStorage.setItem('history', cityHistory);
+    $(searchHistory).append("<button id=research class='btn btn-secondary'>"+ cityInput + "</button>");
+    }
+    localStorage.setItem('history', JSON.stringify(cityHistory));
     console.log(cityHistory);
     }
 };
 
 // Creating button for searched cities function
 var createCityButton = function () {
-    var callHistory = localStorage.getItem('history');
-    for (let i = 0; i < callHistory; i++) {
-    $('.card-body').append("<button id="+ callHistory[i]+" class='btn btn-secondary'>"+ callHistory[i] + "</button>");
-}}
+    var callHistory = JSON.parse(localStorage.getItem('history')) || [];
+    console.log(callHistory);
+    for (let i = 0; i < callHistory.length; i++) {
+    $('#searchHistory').append("<button id=research-btn class='btn btn-secondary'>"+ callHistory[i] + "</button>");
+}};
+
+function researchButtonClick (event) {
+    event.preventDefault();
+    var cityResearch = event.target.innerText;
+    if (!event.target.matches('#research-btn')) {
+        return;
+    } else {
+    callCity(cityResearch);
+    console.log(cityResearch);
+}};
+
 
 //Search button on click
+
+createCityButton();
 buttonEl.addEventListener("click", buttonClickHandler);
+searchHistory.addEventListener("click", researchButtonClick);
