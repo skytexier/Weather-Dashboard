@@ -2,6 +2,8 @@ var fivedayEl = document.querySelector('#fiveday');
 var buttonEl = document.querySelector('#searchcity');
 var cityNameEl = document.querySelector('#cityname');
 var currentDay = document.querySelector('#daily');
+
+// Empty array to store past cities into
 var cityHistory = []
 var searchHistory = document.querySelector('#searchHistory');
 var researchBtnEl = document.querySelector('#research-btn');
@@ -80,7 +82,7 @@ fetch(apiURL)
         var formatDate = new Date(onecall.daily[i].dt * 1000);
         var dateEl = formatDate.toLocaleDateString("en-Us");
 
-
+        // Looping through API call to get temp, wind speed and so forth for 5 days
         $(fivedayEl).append("<div class='fivedaycard' id= "+ i + "></div>");
         $(dayId).append("<h3>" + dateEl + "</h3>");
         $(dayId).append("<img src=http://openweathermap.org/img/w/" + onecall.daily[i].weather[0].icon + ".png </img>");
@@ -89,9 +91,10 @@ fetch(apiURL)
         $(dayId).append("<p> Humidity: " + onecall.daily[i].humidity + " % </p>");
         $(dayId).append("<p class=uvi> UV Index: " + onecall.daily[i].uvi + "</p>");
 
+        // UVI styling depending on API call UVI value
         if (onecall.daily[i].uvi < 3){
             $(".uvi").addClass("uvi-low");
-        } else if (onecall.daily[i].uvi >= 3 && onecall.daily[i].uvi <= 5){
+        } else if (onecall.daily[i].uvi >= 3 && onecall.daily[i].uvi < 6){
             $(".uvi").addClass("uvi-moderate");
         } else if (onecall.daily[i].uvi >= 6 && onecall.daily[i].uvi <= 7){
             $(".uvi").addClass("uvi-high");
@@ -134,6 +137,7 @@ var createCityButton = function () {
     $('#searchHistory').append("<button id=research-btn class='btn btn-secondary'>"+ callHistory[i] + "</button>");
 }};
 
+// Re-search button click function
 function researchButtonClick (event) {
     event.preventDefault();
     var cityResearch = event.target.innerText;
@@ -145,8 +149,11 @@ function researchButtonClick (event) {
 }};
 
 
-//Search button on click
-
+//Calling function to recall local storage items
 createCityButton();
+
+//First on search button event listener
 buttonEl.addEventListener("click", buttonClickHandler);
+
+//Click event for re-search buttons / locally stored buttons
 searchHistory.addEventListener("click", researchButtonClick);
